@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './Home.css'
+import Heading from './components/Heading';
+import Button from './components/Button';
+
 
 function App() {
+  const [data, setData] = useState()
+
+  const loadData = () => 
+    setData([
+      { data: "one", color: "yellow" },
+      { data: "two", color: "green" },
+      { data: "three", color: "blue" }
+    ])
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button onClick={loadData} />
+
+      {data && data?.map((item, i) => (
+        <div className='d-flex gap-3'>
+          <h1>{i + 1}. </h1>  <Heading content={item.data} theme={item.color} />
+        </div>
+      ))}
+
+    </>
   );
 }
 
